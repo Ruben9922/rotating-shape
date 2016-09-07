@@ -3,11 +3,17 @@ void setup() {
 }
 
 void draw() {
+  final int squareSize = 100;
+  
   background(50);
   strokeWeight(4);
   
   stroke(255);
   fill(255, 0);
+  pushMatrix();
+  translate(width / 2, height / 2);
+  rotate(radians(mouseX + mouseY));
   rectMode(CENTER);
-  rect(width / 2, height / 2, 100, 100);
+  rect(0, 0, squareSize, squareSize);
+  popMatrix();
 }
