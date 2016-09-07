@@ -9,7 +9,11 @@ void draw() {
   strokeWeight(4);
   
   stroke(255);
-  fill(255, 0);
+  if (mousePressed) {
+    fill(255, 255);
+  } else {
+    fill(255, 0);
+  }
   pushMatrix();
   translate(width / 2, height / 2);
   rotate(radians(mouseX + mouseY));
