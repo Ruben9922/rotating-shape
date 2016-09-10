@@ -4,10 +4,10 @@ void setup() {
 
 void draw() {
   final int squareSize = 100;
-  
+
   background(50);
   strokeWeight(4);
-  
+
   stroke(255);
   if (mousePressed) {
     fill(255, 255);
@@ -16,7 +16,7 @@ void draw() {
   }
   pushMatrix();
   translate(width / 2, height / 2);
-  rotate(radians(mouseX + mouseY));
+  rotate(radians((mouseY <= height / 2 ? mouseX : -mouseX) + (mouseX <= width / 2 ? mouseY : -mouseY)));
   rectMode(CENTER);
   rect(0, 0, squareSize, squareSize);
   popMatrix();
