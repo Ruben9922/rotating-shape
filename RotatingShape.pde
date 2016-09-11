@@ -1,4 +1,6 @@
 int lastRotationAngle = 0;
+int rotationAngleOffset = 0;
+boolean mouseWasBelowDiagonal = false;
 
 void setup() {
   size(600, 400);
@@ -23,27 +25,26 @@ void draw() {
   }
   pushMatrix();
   translate(width / 2, height / 2);
-  int currentRotationAngle = mouseX + mouseY;
-  // If mouse is below line between top left and bottom right corners, change sign of currentRotationAngle
-  if (((double)mouseX / width) < ((double)mouseY / height)) {
+  int currentRotationAngle = (mouseX + mouseY) % 360;
+  boolean mouseIsBelowDiagonal = ((double)mouseX / width) < ((double)mouseY / height);
+  if (mouseIsBelowDiagonal) {
+      // If mouse is below line between top left and bottom right corners ("diagonal"), change sign of currentRotationAngle
       currentRotationAngle = -currentRotationAngle;
   }
-  int resultantRotationAngle = 0;
-  // If currentRotationAngle and lastRotationAngle have different signs then add lastRotationAngle and currentRotationAngle
-  if ((currentRotationAngle > 0) != (lastRotationAngle > 0)) {
-    resultantRotationAngle = lastRotationAngle + currentRotationAngle;
-  } else {
-    resultantRotationAngle = currentRotationAngle;
+  int resultantRotationAngle;
+  if (mouseWasBelowDiagonal != mouseIsBelowDiagonal) {
+    rotationAngleOffset = currentRotationAngle + lastRotationAngle;
   }
-  resultantRotationAngle = resultantRotationAngle % 360;
-  rotate(radians(resultantRotationAngle));
+  resultantRotationAngle = (rotationAngleOffset - currentRotationAngle) % 360;
+  rotate(radians(360 - resultantRotationAngle));
   rectMode(CENTER);
   rect(0, 0, squareSize, squareSize);
   popMatrix();
 
   // Output calculated angles
   fill(255);
-  text(lastRotationAngle + ", " + currentRotationAngle + ", " + resultantRotationAngle, 0, 60);
+  text("L:" + lastRotationAngle + ", C:" + currentRotationAngle + ", O:" + rotationAngleOffset + ", R:" + resultantRotationAngle + ", " + (mouseWasBelowDiagonal != mouseIsBelowDiagonal), 0, 60);
 
   lastRotationAngle = resultantRotationAngle;
+  mouseWasBelowDiagonal = mouseIsBelowDiagonal;
 }
