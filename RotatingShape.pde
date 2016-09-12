@@ -33,10 +33,10 @@ void draw() {
   }
   int resultantRotationAngle;
   if (mouseWasBelowDiagonal != mouseIsBelowDiagonal) {
-    rotationAngleOffset = currentRotationAngle + lastRotationAngle;
+    rotationAngleOffset = lastRotationAngle - currentRotationAngle;
   }
-  resultantRotationAngle = (rotationAngleOffset - currentRotationAngle) % 360;
-  rotate(radians(360 - resultantRotationAngle));
+  resultantRotationAngle = (rotationAngleOffset + currentRotationAngle) % 360;
+  rotate(radians(resultantRotationAngle));
   rectMode(CENTER);
   rect(0, 0, squareSize, squareSize);
   popMatrix();
