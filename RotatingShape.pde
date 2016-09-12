@@ -13,10 +13,6 @@ void draw() {
   strokeWeight(4);
 
   stroke(255);
-  fill(255);
-  textSize(20);
-  text(mouseX + ", " + mouseY + ", " + (mouseX + mouseY), 0, 20);
-  text((double)mouseX / width + ", " + (double)mouseY / height, 0, 40);
 
   if (mousePressed) {
     fill(255, 255);
@@ -40,10 +36,6 @@ void draw() {
   rectMode(CENTER);
   rect(0, 0, squareSize, squareSize);
   popMatrix();
-
-  // Output calculated angles
-  fill(255);
-  text("L:" + lastRotationAngle + ", C:" + currentRotationAngle + ", O:" + rotationAngleOffset + ", R:" + resultantRotationAngle + ", " + (mouseWasBelowDiagonal != mouseIsBelowDiagonal), 0, 60);
 
   lastRotationAngle = resultantRotationAngle;
   mouseWasBelowDiagonal = mouseIsBelowDiagonal;
