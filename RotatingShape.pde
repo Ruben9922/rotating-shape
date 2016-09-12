@@ -3,7 +3,8 @@ void setup() {
 }
 
 void draw() {
-  final int squareSize = 100;
+  final int mainSquareSize = 100;
+  final int secondarySquareSize = (int)(mainSquareSize * 1.8);
   PVector center = new PVector(width / 2, height / 2);
 
   background(50);
@@ -15,12 +16,23 @@ void draw() {
   } else {
     fill(255, 0);
   }
+  rectMode(CENTER);
 
   pushMatrix();
   translate(center.x, center.y);
   float mouseAngle = atan((mouseY - center.y) / (mouseX - center.x));
+
+  pushMatrix();
   rotate(mouseAngle);
-  rectMode(CENTER);
-  rect(0, 0, squareSize, squareSize);
+  rect(0, 0, mainSquareSize, mainSquareSize);
+  popMatrix();
+
+  stroke(80);
+  fill(255, 0);
+  pushMatrix();
+  rotate(mouseAngle * -2);
+  rect(0, 0, secondarySquareSize, secondarySquareSize);
+  popMatrix();
+
   popMatrix();
 }
