@@ -3,8 +3,8 @@ void setup() {
 }
 
 void draw() {
-  final int mainSquareSize = 100;
-  final int secondarySquareSize = (int)(mainSquareSize * 1.8);
+  final int MAIN_SQUARE_SIZE = 100;
+  final int SECONDARY_SQUARE_SIZE = (int)(MAIN_SQUARE_SIZE * 1.8);
   PVector center = new PVector(width / 2, height / 2);
 
   background(50);
@@ -24,14 +24,14 @@ void draw() {
 
   pushMatrix();
   rotate(mouseAngle);
-  rect(0, 0, mainSquareSize, mainSquareSize);
+  rect(0, 0, MAIN_SQUARE_SIZE, MAIN_SQUARE_SIZE);
   popMatrix();
 
   stroke(80);
   fill(255, 0);
   pushMatrix();
   rotate(mouseAngle * -2);
-  rect(0, 0, secondarySquareSize, secondarySquareSize);
+  rect(0, 0, SECONDARY_SQUARE_SIZE, SECONDARY_SQUARE_SIZE);
   popMatrix();
 
   popMatrix();
